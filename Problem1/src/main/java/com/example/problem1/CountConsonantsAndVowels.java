@@ -46,6 +46,18 @@ public class CountConsonantsAndVowels extends Application {
         userEnter.setLayoutX(260);
         userEnter.setLayoutY(200);
 
+        Text vowelCountText = new Text();
+        vowelCountText.setX(200);
+        vowelCountText.setY(260);
+
+        Text consCountText = new Text();
+        consCountText.setX(200);
+        consCountText.setY(275);
+
+        Text fileExists = new Text();
+        fileExists.setX(200);
+        fileExists.setY(290);
+
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -80,10 +92,18 @@ public class CountConsonantsAndVowels extends Application {
                     }
                 }
 
+
                 System.out.println(vowelSet);
                 System.out.println(consSet);
+                /*
                 System.out.println(vowelCount);
                 System.out.println(consCount);
+
+                 */
+
+                vowelCountText.setText("There are: "+String.valueOf(vowelCount)+" vowels in your file");
+                consCountText.setText("There are: "+String.valueOf(consCount)+" consonants in your file");
+                fileExists.setText("Does the file exist? "+file.exists());
             }
         };
 
@@ -96,7 +116,7 @@ public class CountConsonantsAndVowels extends Application {
 
 
         //System.out.println(fileContent);
-        group.getChildren().addAll(userInputFileName, title, userEnter);
+        group.getChildren().addAll(userInputFileName, title, userEnter, vowelCountText,consCountText,fileExists);
         stage.setTitle("Problem 1");
         stage.setScene(scene);
         stage.show();
