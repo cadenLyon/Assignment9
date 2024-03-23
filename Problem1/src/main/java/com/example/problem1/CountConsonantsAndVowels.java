@@ -6,6 +6,8 @@ Computer Science II
  */
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,29 +31,7 @@ public class CountConsonantsAndVowels extends Application {
     public void start(Stage stage) throws IOException {
         Group group = new Group();
         Scene scene = new Scene(group, 600, 400, Color.LIGHTSKYBLUE);
-        File file = new File("TestFile.txt");
-        String fileName = "TestFile.txt";
-        String fileContent = Files.readString(Paths.get(fileName), StandardCharsets.UTF_8);
 
-        Set<String> vowelSet = new HashSet<String>();
-        Set<String> consSet = new HashSet<String>();
-
-        int vowelCount = 0;
-        int consCount = 0;
-
-        for(int i = 0; i<fileContent.length(); i++){
-            String charString = String.valueOf(fileContent.charAt(i));
-            String lowerCharString = charString.toLowerCase();
-            if (Character.isLetter(fileContent.charAt(i))){
-                if(lowerCharString.matches("[aeiouAEIOU]")){
-                    vowelCount += 1;
-                    vowelSet.add(lowerCharString);
-                }else{
-                    consCount += 1;
-                    consSet.add(lowerCharString);
-                }
-            }
-        }
 
         Text title = new Text("Enter your file name");
         title.setFont(Font.font(20));
@@ -66,14 +46,53 @@ public class CountConsonantsAndVowels extends Application {
         userEnter.setLayoutX(260);
         userEnter.setLayoutY(200);
 
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String userFileName = userInputFileName.getText();
+
+                File file = new File(userFileName);
+                final String[] fileName = {userFileName};
+                String fileContent = null;
+                try {
+                    fileContent = Files.readString(Paths.get(fileName[0]), StandardCharsets.UTF_8);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Set<String> vowelSet = new HashSet<String>();
+                Set<String> consSet = new HashSet<String>();
+
+                int vowelCount = 0;
+                int consCount = 0;
+
+                for(int i = 0; i<fileContent.length(); i++){
+                    String charString = String.valueOf(fileContent.charAt(i));
+                    String lowerCharString = charString.toLowerCase();
+                    if (Character.isLetter(fileContent.charAt(i))){
+                        if(lowerCharString.matches("[aeiouAEIOU]")){
+                            vowelCount += 1;
+                            vowelSet.add(lowerCharString);
+                        }else{
+                            consCount += 1;
+                            consSet.add(lowerCharString);
+                        }
+                    }
+                }
+
+                System.out.println(vowelSet);
+                System.out.println(consSet);
+                System.out.println(vowelCount);
+                System.out.println(consCount);
+            }
+        };
+
+        userEnter.setOnAction(event);
 
 
 
 
-        System.out.println(vowelSet);
-        System.out.println(consSet);
-        System.out.println(vowelCount);
-        System.out.println(consCount);
+
 
 
         //System.out.println(fileContent);
