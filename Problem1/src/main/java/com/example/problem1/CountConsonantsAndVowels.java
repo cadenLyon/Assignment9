@@ -29,7 +29,6 @@ public class CountConsonantsAndVowels extends Application {
         String fileName = "TestFile.txt";
         String fileContent = Files.readString(Paths.get(fileName), StandardCharsets.UTF_8);
 
-        Set<String> charSet = new HashSet<String>();
         Set<String> vowelSet = new HashSet<String>();
         Set<String> consSet = new HashSet<String>();
 
@@ -49,6 +48,13 @@ public class CountConsonantsAndVowels extends Application {
                 }
             }
         }
+
+        
+
+
+
+
+
 
         System.out.println(vowelSet);
         System.out.println(consSet);
