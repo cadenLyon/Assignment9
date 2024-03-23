@@ -9,7 +9,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -24,7 +28,7 @@ public class CountConsonantsAndVowels extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Group group = new Group();
-        Scene scene = new Scene(group, 320, 240, Color.LIGHTSKYBLUE);
+        Scene scene = new Scene(group, 600, 400, Color.LIGHTSKYBLUE);
         File file = new File("TestFile.txt");
         String fileName = "TestFile.txt";
         String fileContent = Files.readString(Paths.get(fileName), StandardCharsets.UTF_8);
@@ -49,8 +53,18 @@ public class CountConsonantsAndVowels extends Application {
             }
         }
 
-        
+        Text title = new Text("Enter your file name");
+        title.setFont(Font.font(20));
+        title.setX(200);
+        title.setY(50);
 
+        TextField userInputFileName = new TextField();
+        userInputFileName.setLayoutX(210);
+        userInputFileName.setLayoutY(100);
+
+        Button userEnter = new Button("Enter");
+        userEnter.setLayoutX(260);
+        userEnter.setLayoutY(200);
 
 
 
@@ -63,6 +77,7 @@ public class CountConsonantsAndVowels extends Application {
 
 
         //System.out.println(fileContent);
+        group.getChildren().addAll(userInputFileName, title, userEnter);
         stage.setTitle("Problem 1");
         stage.setScene(scene);
         stage.show();

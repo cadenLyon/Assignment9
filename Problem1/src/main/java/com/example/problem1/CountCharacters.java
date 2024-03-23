@@ -7,6 +7,6 @@ public class CountCharacters {
     public CountCharacters(){
     }
 
-    String countCharacters()
+
 
 }
