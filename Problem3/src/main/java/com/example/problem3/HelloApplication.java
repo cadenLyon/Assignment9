@@ -17,8 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelloApplication extends Application {
     @Override
@@ -53,6 +57,18 @@ public class HelloApplication extends Application {
         File babyRanking2021 = new File("babynameranking2021.txt");
         File babyRanking2022 = new File("babynameranking2022.txt");
 
+        ArrayList<String> maleNames2001 = new ArrayList<>();
+
+        BufferedReader bf = new BufferedReader(new FileReader("babynameranking2001.txt"));
+        String line = bf.readLine();
+
+        while (line != null){
+            maleNames2001.add(line);
+            line = bf.readLine();
+        }
+        bf.close();
+
+        System.out.println(maleNames2001);
 
         ComboBox yearsListDropDown = new ComboBox<>(FXCollections.observableArrayList(yearsList));
         yearsListDropDown.setLayoutX(300);
